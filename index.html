@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CATCH THE PHISH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===================== MENU ===================== -->
+  <section id="menu" class="screen active">
+    <header class="hero">
+      <div class="logo">🎣</div>
+      <h1>CATCH THE <span>PHISH</span></h1>
+      <p class="tagline">Najdi podvodné e-maily dřív, než najdou tebe.</p>
+      <button class="btn ghost" id="btn-howto">❓ Jak hrát</button>
+    </header>
+
+    <div class="panel">
+      <h2>1. Vyber obtížnost</h2>
+      <div class="modes">
+        <button class="mode" id="mode-normal" data-mode="normal">
+          <b>🙂 Normal</b>
+          <small>Lupa ti napoví, co je podezřelé. Bez časového limitu.</small>
+        </button>
+        <button class="mode" id="mode-hard" data-mode="hard">
+          <b>😈 Hard</b>
+          <small>Víc e-mailů, zákeřnější triky, 30 s na e-mail a lupa už neradí.</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>2. Vyber level</h2>
+      <p class="muted">Další level se odemkne, až dokončíš předchozí. Dokončené levely můžeš hrát znovu kdykoliv.</p>
+      <div id="levels" class="levels"></div>
+    </div>
+
+    <div class="panel">
+      <h2>📈 Index bezpečnostní gramotnosti</h2>
+      <div class="index-row">
+        <div class="index-big"><span id="menu-index">0</span><small>/100</small></div>
+        <canvas id="menu-chart" class="chart"></canvas>
+      </div>
+      <button class="btn link-btn" id="btn-reset">Smazat postup</button>
+    </div>
+  </section>
+
+  <!-- ===================== HRA ===================== -->
+  <section id="game" class="screen">
+    <div class="topbar">
+      <button class="btn ghost small" id="btn-quit">← Menu</button>
+      <div class="topinfo">
+        <b id="g-title">Level</b>
+        <span id="g-mode" class="badge">Normal</span>
+      </div>
+      <div class="topstats">
+        <span id="g-progress">1/6</span>
+        <span>⭐ <b id="g-score">0</b></span>
+        <span id="g-timer" class="timer hidden">⏱ 30</span>
+      </div>
+    </div>
+
+    <div class="mailapp">
+      <aside class="inbox">
+        <div class="inbox-head">📥 Doručená pošta</div>
+        <ul id="inbox-list"></ul>
+      </aside>
+      <main id="reader" class="reader"></main>
+    </div>
+  </section>
+
+  <!-- ===================== VÝSLEDKY ===================== -->
+  <section id="results" class="screen">
+    <div id="results-box" class="panel results"></div>
+  </section>
+
+  <!-- ===================== JAK HRÁT ===================== -->
+  <div id="howto" class="modal hidden">
+    <div class="modal-box">
+      <h2>❓ Jak hrát</h2>
+      <ol>
+        <li>Do schránky ti přijdou e-maily. Některé jsou <b>v pořádku</b>, jiné jsou <b>phishing</b> – podvod, který
+          chce tvoje heslo, peníze nebo údaje.</li>
+        <li>🔍 <b>Detektivní lupa:</b> najeď myší na <u>odesílatele</u>, <u>odkazy</u> a <u>přílohy</u>. Uvidíš, co se
+          za nimi doopravdy skrývá.</li>
+        <li>Rozhodni se: <b>✅ Bezpečný</b> nebo <b>🎣 Phishing</b>. Hned se dozvíš, jestli máš pravdu a proč.</li>
+        <li>Na konci dne uvidíš statistiku a tvůj <b>Index bezpečnostní gramotnosti</b>.</li>
+      </ol>
+      <h3>5 zlatých pravidel</h3>
+      <ul class="rules">
+        <li>👤 Kontroluj <b>celou adresu</b> odesílatele (paypa1 ≠ paypal).</li>
+        <li>🔗 Najeď na odkaz – <b>text může lhát</b>.</li>
+        <li>📎 Pozor na přílohy <b>.exe .zip .iso .html .docm</b>.</li>
+        <li>⏰ <b>Spěch a strach</b> = varování.</li>
+        <li>🔑 Nikdo slušný po tobě <b>nechce heslo ani číslo karty</b> e-mailem.</li>
+      </ul>
+      <button class="btn primary" id="btn-howto-close">Rozumím, jdu lovit!</button>
+    </div>
+  </div>
+
+  <div id="tooltip" class="tooltip hidden"></div>
+
+  <script src="emails.js"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>
